@@ -1,0 +1,16 @@
+# Python cache's
+__pycache__/
+*.pyc
+
+# Base de datos (NO subirla)
+db.sqlite3
+
+# Archivos de media (imágenes/archivos subidos por usuario)
+media/
+
+# Archivos estáticos compilados o generados
+static/
+
+# Otros archivos temporales
+.sass-cache/
+.DS_Store

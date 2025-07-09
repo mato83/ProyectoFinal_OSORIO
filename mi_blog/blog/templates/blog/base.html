@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+
+  <style>
+    
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px 0;
+    font-size: 1em;
+    color: #fff; 
+    background-color: #2196F3; 
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #1976D2; 
+    transform: translateY(-2px);
+}
+
+    
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    background-color: #ffe0b2; 
+    padding: 10px 0;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+nav a:hover {
+    background-color: #ffcc80; 
+}
+</style>
+
+
+    <title>{% block title %}Mi Blog{% endblock %}</title>
+</head>
+<body>
+    <header>
+
+  {% if user.is_authenticated %}
+    <!-- Enlaces solo visibles si el usuario está logueado -->
+    <div style="display: flex; justify-content: flex-end; padding: 20px;">
+    <a href="{% url 'profile' %}"style="margin-right: 30px;" class="btn">Mi Perfil</a>
+ 
+    <form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+    <button type="submit" class="btn"style="margin-right: 50px;">Cerrar Sesión</button>
+    </form> 
+  {% if user.profile.avatar %}
+    <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width:40px; height:40px; border-radius:50%; object-fit: cover;">
+  {% endif %}
+    </div>
+  {% else %}
+    <!-- Enlaces solo visibles si NO está logueado -->
+    <div style="display: flex; justify-content: flex-end; padding: 20px;">
+    <a href="{% url 'login' %}"class="btn" style="margin-right: 20px;">Iniciar Sesión</a>
+    <a href="{% url 'signup' %}"class="btn">Registrarse</a>
+    </div>
+  {% endif %}
+
+       <nav>
+  <a href="{% url 'inicio' %}">Inicio</a>
+  <a href="{% url 'page-list' %}">Blog</a>
+  <a href="{% url 'acerca' %}">Acerca de mí</a>
+  <a href="{% url 'contacto' %}">Contacto</a>
+  
+  {% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+</nav>
+
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+
+
+
+    
+    <footer>
+        <p>&copy; 2025 Mi Blog</p>
+    </footer>
+</body>
+</html>

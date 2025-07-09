@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ object.title }}</title>
+</head>
+<body>
+    <h1>{{ object.title }}</h1>
+    {% if object.image %}
+        <img src="{{ object.image.url }}" alt="{{ object.title }}" style="max-width: 400px; border: 1px solid #ccc;">
+    {% endif %}
+    <p><strong>Fecha:</strong> {{ object.date_created }}</p>
+    <p><strong>Resumen:</strong> {{ object.summary }}</p>
+    <div>
+        {{ object.content|safe }}
+    </div>
+    <p><a href="{% url 'page-list' %}">Volver al listado</a></p>
+</body>
+</html>

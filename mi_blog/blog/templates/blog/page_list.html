@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Listado de Páginas{% endblock %}
+
+{% block content %}
+
+    <h1>Listado de páginas</h1>
+    
+
+    {% if pages %}
+        <ul>
+            {% for page in pages %}
+                <li style="margin-bottom:20px; border-bottom:1px solid #ccc; padding-bottom:10px;">
+                    <h2>{{ page.title }}</h2>
+                    {% if page.image %}
+                        <img src="{{ page.image.url }}" alt="{{ page.title }}" style="max-width:200px; height:auto;"/>
+                    {% endif %}
+                    <p><strong>Fecha:</strong> {{ page.date_created }}</p>
+                    <p><strong>Resumen:</strong> {{ page.summary }}</p>
+                    <p><strong>Contenido:</strong> {{ page.content|slice:":150" }}...</p> <!-- solo los primeros 150 caracteres -->
+                    <!-- Enlace a la vista de detalle -->
+                    <p><a href="{% url 'page-detail' page.id %}">Ver más</a></p>
+                            <a href="{% url 'page-create' %}">Crear nueva página</a>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'page-update' page.id %}">Editar</a>
+                            <a href="{% url 'page-delete' page.id %}">Borrar</a>
+                            {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+ 
+    {% else %}
+        <p>No hay páginas aún.</p>
+    {% endif %}
+    {% endblock %}

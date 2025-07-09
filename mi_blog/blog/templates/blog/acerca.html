@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+<h1>Acerca de mí</h1>
+<p> ¡Hola! Soy Matías, tengo 41 años y soy analista de Marketing.
+    <br>
+    <br>
+    Desde hace un tiempo descubrí una de mis grandes pasiones es viajar y conocer nuevos lugares.
+    <br>
+    Me encanta explorar distintas culturas, perderme en las calles de ciudades que no conozco, probar sabores nuevos y dejarme sorprender por cada destino. Este espacio nace de esas ganas de compartir mis experiencias, los lugares que voy descubriendo y todo lo que me inspira cada vez que armo la mochila.
+    <br>
+    <br>
+    Si te gusta viajar, o simplemente querés acompañarme en este recorrido, puedes registrate con tu usuario y contraseña y compartir tus viajes en este blog.
+    <br>
+    <br>
+
+    ¡Bienvenido!
+
+</p>
+
+<!-- Puedes agregar un formulario o datos de contacto aquí -->
+<a href="{% url 'inicio' %}">Volver a la página de inicio</a>
+{% endblock %}
